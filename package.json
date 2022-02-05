@@ -1,0 +1,60 @@
+{
+  "name": "getir-challenge-backend",
+  "version": "0.0.1",
+  "description": "Rest API with NodeJS, Express, Mongoose in Typescript",
+  "main": "index.js",
+  "scripts": {
+    "watch": "nodemon",
+    "dev": "npx node --inspect=0.0.0.0:9449 --nolazy -r ts-node/register src/server",
+    "build": "tsc -p .",
+    "clean-build": "rm -rf dist/*",
+    "lint": "npx tsc --noEmit && ts-standard",
+    "lint-fix": "npx tsc --noEmit && ts-standard --fix",
+    "start": "npm run build && node dist/server",
+    "start-debug": "npm run build && node --inspect=0.0.0.0:9449 --nolazy dist/server",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicobees/getir-challenge-backend.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongoose",
+    "typescript"
+  ],
+  "author": "nicobees",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicobees/getir-challenge-backend/issues"
+  },
+  "homepage": "https://github.com/nicobees/getir-challenge-backend#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "reflect-metadata": "^0.1.13",
+    "typescript": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.15",
+    "jest": "^27.1.3",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.2",
+    "ts-jest": "^27.1.3",
+    "ts-node": "^10.4.0",
+    "ts-standard": "^11.0.0"
+  },
+  "ts-standard": {
+    "project": "./tsconfig.json"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.ts"
+    ]
+  }
+}

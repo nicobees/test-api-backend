@@ -1,0 +1,13 @@
+{
+    "watch": [
+        "src"
+    ],
+    "ext": "ts",
+    "ignore": [
+        "src/**/*.test.ts"
+    ],
+    "legacyWatch": true,
+    "signal": "SIGINT",
+    "verbose": true,
+    "exec": "npm run dev"
+}
