@@ -1,3 +1,4 @@
+import { RestResponse, RestResponseDataInterface } from '@root/classes'
 import { Response } from 'express'
 import { httpResponseStatus } from '.'
 
@@ -11,12 +12,22 @@ export class ApiError extends Error {
   }
 }
 
-export class ApiResponse {
-  constructor (private readonly httpCode: httpResponseStatus = httpResponseStatus.SUCCESS, public message: string = 'success') {
-
+export class ApiResponse<DataType> extends RestResponse<Response> {
+  constructor (message: string, protected data: DataType, status: httpResponseStatus = httpResponseStatus.SUCCESS) {
+    super(status, message)
   }
 
-  public static handle (apiResponse: ApiResponse, res: Response): Response {
-    return res.status(apiResponse.httpCode).json({ code: 0, msg: apiResponse.message })
+  protected prepare<DataType> (responseObject: Response, responseData: DataType): Response {
+    const result: RestResponseDataInterface<DataType> = {
+      code: 0,
+      msg: this.message,
+      record: responseData
+    }
+
+    return responseObject.status(this.status).json(result)
+  }
+
+  public send (responseObject: Response): Response {
+    return this.prepare<DataType>(responseObject, this.data)
   }
 }
