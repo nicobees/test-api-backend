@@ -5,3 +5,5 @@ const test = (): string => {
 }
 
 console.info(test)
+
+export {}
