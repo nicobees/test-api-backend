@@ -1,7 +1,7 @@
 import { Application } from 'express'
 import request from 'supertest'
 
-import appExpress from '@root/app'
+import appExpress from '@root/app/app'
 import { ServerConfig } from '@root/config'
 import { httpResponseStatus } from '@root/utils'
 

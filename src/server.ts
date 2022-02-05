@@ -1,6 +1,6 @@
 import path from 'path'
 import http from 'http'
-import app from '@root/app'
+import app from '@root/app/app'
 
 import { onServerError } from '@root/utils'
 import { ServerConfig } from '@root/config'
