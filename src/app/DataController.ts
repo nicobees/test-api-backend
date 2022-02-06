@@ -35,7 +35,7 @@ export class DataController<LoggerType extends WinstonLoggerInterface> extends C
     try {
       const { startDate, endDate, minCount, maxCount } = req.body
 
-      const startDateFormatted = new Date(`${String(startDate)}T00:00:00`) // TODO v2.0.0 - manage localisation and timezone if needed
+      const startDateFormatted = new Date(`${String(startDate)}T00:00:00`) // TODO@v2.0.0 - manage localisation and timezone if needed
       const endDateFormatted = new Date(`${String(endDate)}T23:59:59.999`)
 
       const data = await this.dataRepository.getDataByDateAndCount(startDateFormatted, endDateFormatted, minCount, maxCount)
