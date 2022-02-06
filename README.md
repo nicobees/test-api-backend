@@ -26,7 +26,7 @@ npm run dev
 2. Run locally in watch mode, it starts with debugger on port 9949:
 
 ```
-npm run watch
+npm run dev:watch
 ```
 
 3. Run locally with ts transpilation:
