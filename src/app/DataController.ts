@@ -3,7 +3,7 @@ import { body, ValidationChain } from 'express-validator'
 
 import { Controller } from '@root/classes'
 import { ApiResponse } from '@root/utils/expressUtils'
-import { DataRepositoryInterface } from '.'
+import { DataRepositoryInterface, WinstonLoggerInterface } from '.'
 import { applyValidate } from '@root/utils'
 
 const postDataRequestValidations: ValidationChain[] = [
@@ -21,8 +21,8 @@ const postDataRequestValidations: ValidationChain[] = [
     .isNumeric().withMessage('must be a number')
 ]
 
-export class DataController extends Controller<Router> {
-  constructor (private readonly dataRepository: DataRepositoryInterface) {
+export class DataController<LoggerType extends WinstonLoggerInterface> extends Controller<Router> {
+  constructor (private readonly logger: LoggerType, private readonly dataRepository: DataRepositoryInterface) {
     super()
     this.setPath('/')
     this.setRouter(Router())
@@ -43,6 +43,9 @@ export class DataController extends Controller<Router> {
       new ApiResponse('Success', data).send(res)
       return
     } catch (e) {
+      if (e instanceof Error) {
+        this.logger.error(e.message)
+      }
       next(e)
     }
   }

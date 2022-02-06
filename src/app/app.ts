@@ -16,14 +16,6 @@ export const appExpress = async (envConfig: ServerConfig): Promise<Application> 
     app.use('/', route)
   }
 
-  // app.post('/', (req, res, next) => {
-  //   res.json({ result: true })
-  // })
-
-  // app.post('/test-bad-request', (req, res, next) => {
-  //   next(new ApiError(httpResponseStatus.BAD_REQUEST, 'test custom error'))
-  // })
-
   // error handlers
   applyErrorHandlers(envConfig.environment, app)
 

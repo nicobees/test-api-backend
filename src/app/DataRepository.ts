@@ -1,11 +1,16 @@
 import { PipelineStage } from 'mongoose'
+import { WinstonLoggerInterface } from '.'
 import dataModel, { DataBaseDocument, DataInterface } from './Data'
 
 export interface DataRepositoryInterface {
   getDataByDateAndCount: (minDate: DataInterface['createdAt'], maxDate: DataInterface['createdAt'], minCount: number, maxCount: number) => Promise<DataBaseDocument[]>
 }
 
-export class DataRepository implements DataRepositoryInterface {
+export class DataRepository<LoggerType extends WinstonLoggerInterface> implements DataRepositoryInterface {
+  constructor (private readonly logger: LoggerType) {
+
+  }
+
   public getDataByDateAndCount = async (minDate: DataInterface['createdAt'], maxDate: DataInterface['createdAt'], minCount: number, maxCount: number): Promise<DataBaseDocument[]> => {
     try {
       const aggregateFunction: PipelineStage[] = [
@@ -39,7 +44,11 @@ export class DataRepository implements DataRepositoryInterface {
 
       return data
     } catch (e) {
-      console.error(e)
+      if (e instanceof Error) {
+        this.logger.error(e.message)
+      } else {
+        console.error(e)
+      }
       throw e
     }
   }
