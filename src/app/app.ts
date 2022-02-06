@@ -4,11 +4,11 @@ import { applyErrorHandlers } from '@root/utils'
 import { ServerConfig } from '@root/config'
 import { ExpressMain } from '.'
 
-export default async (envConfig: ServerConfig): Promise<Application> => {
+export const appExpress = async (envConfig: ServerConfig): Promise<Application> => {
   const app: Application = express()
 
   const expressMain = new ExpressMain()
-  await expressMain.initialise()
+  await expressMain.initialise(envConfig)
 
   app.use(express.json())
 

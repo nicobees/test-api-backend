@@ -1,7 +1,9 @@
 import { Router } from 'express'
+import mongoose from 'mongoose'
 
 import { Controller } from '@root/classes'
-import MainController from './MainController'
+import { ServerConfig } from '@root/config'
+import { DataController, DataRepository } from '.'
 
 export class ExpressMain {
   private readonly controllerRoutes!: Router[]
@@ -11,12 +13,15 @@ export class ExpressMain {
     this.controllerRoutes = []
   }
 
-  public initialise = async (): Promise<void> => {
+  public initialise = async (envConfig: ServerConfig): Promise<void> => {
     try {
-      const mainController = new MainController()
+      await mongoose.connect(envConfig.db)
 
-      this.controllers.push(mainController)
-      this.controllerRoutes.push(mainController.getRouter())
+      const dataRepository = new DataRepository()
+      const dataController = new DataController(dataRepository)
+
+      this.controllers.push(dataController)
+      this.controllerRoutes.push(dataController.getRouter())
     } catch (e) {
       console.error(e)
       throw e

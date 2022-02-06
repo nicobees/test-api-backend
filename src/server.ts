@@ -1,6 +1,6 @@
 import path from 'path'
 import http from 'http'
-import app from '@root/app/app'
+import { appExpress } from '@root/app'
 
 import { onServerError } from '@root/utils'
 import { ServerConfig } from '@root/config'
@@ -22,7 +22,7 @@ process.on('unhandledRejection', e => {
 try {
   const envConfig = config.get<ServerConfig>('server')
 
-  app(envConfig)
+  appExpress(envConfig)
     .then(app => {
       const server = http.createServer(app)
 
