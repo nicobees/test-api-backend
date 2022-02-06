@@ -1,4 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express'
+import { ValidationChain, ValidationError, validationResult } from 'express-validator'
+
 import { ServerConfig } from '@root/config'
 import { httpResponseStatus } from '.'
 import { ApiError } from './ApiError'
@@ -13,4 +15,21 @@ export const applyErrorHandlers = (environment: ServerConfig['environment'], rou
       ApiError.handle(new ApiError(), res)
     }
   })
+}
+
+export const applyValidate = (validations: ValidationChain[]) => {
+  return async (req: Request, res: Response, next: NextFunction) => {
+    await Promise.all(validations.map(async validation => await validation.run(req)))
+
+    const errors = validationResult(req)
+    if (errors.isEmpty()) {
+      return next()
+    }
+
+    const errorResult = errors.array({ onlyFirstError: true }).reduce((result: string, err: ValidationError) => {
+      return `${result}${result === '' ? '' : ' ---- '}${err.param}: ${String(err.msg)}`
+    }, '')
+
+    next(new ApiError(httpResponseStatus.BAD_REQUEST, errorResult))
+  }
 }

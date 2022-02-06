@@ -5,11 +5,7 @@ export interface DataRepositoryInterface {
   getDataByDateAndCount: (minDate: DataInterface['createdAt'], maxDate: DataInterface['createdAt'], minCount: number, maxCount: number) => Promise<DataBaseDocument[]>
 }
 
-export class DataRepository<dbConnectionType> implements DataRepositoryInterface {
-  constructor () {
-
-  }
-
+export class DataRepository implements DataRepositoryInterface {
   public getDataByDateAndCount = async (minDate: DataInterface['createdAt'], maxDate: DataInterface['createdAt'], minCount: number, maxCount: number): Promise<DataBaseDocument[]> => {
     try {
       const aggregateFunction: PipelineStage[] = [
