@@ -12,7 +12,8 @@ export const applyErrorHandlers = (environment: ServerConfig['environment'], rou
     if (error instanceof ApiError) {
       ApiError.handle(error, res)
     } else {
-      ApiError.handle(new ApiError(), res)
+      /* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions */
+      ApiError.handle(new ApiError(httpResponseStatus.INTERNAL_SERVER_ERROR, error.message || 'generic error'), res)
     }
   })
 }
