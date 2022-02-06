@@ -5,4 +5,5 @@ export interface Config {
 export interface ServerConfig {
   environment: string
   port: number
+  db: string
 }

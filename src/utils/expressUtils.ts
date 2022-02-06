@@ -21,7 +21,7 @@ export class ApiResponse<DataType> extends RestResponse<Response> {
     const result: RestResponseDataInterface<DataType> = {
       code: 0,
       msg: this.message,
-      record: responseData
+      records: responseData
     }
 
     return responseObject.status(this.status).json(result)

@@ -3,7 +3,7 @@ import { httpResponseStatus } from '@root/utils'
 export interface RestResponseDataInterface<DataType = Record<string, unknown> | Array<string | Record<string, unknown>>> {
   code: number
   msg: string
-  record?: DataType
+  records?: DataType
 }
 
 export abstract class RestResponse<ResponseObject> {
