@@ -1,3 +1,21 @@
+## Getir Challenge Backend
+
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
+This is a NodeJS-Express application written in Typescript. It exposes a single RestAPI that allows to retrieve data from a connected MongoDB instance. It uses StandardJS code style.
+
+These are the main modules used in the app:
+- `Mongoose` as driver to connect to a MongoDB instance
+- `winston` to manage log
+- `express-validator` to validate request data
+- `dotenv` and `config` to load environment variables and manage different environments
+- `jest` and `supertest` for Unit Tests and Integration Tests
+
+It implements a (very-notoverengineered-simplified) basic version of a 3-tier architecture: for each component (usually an exposed API path), there are a Controller (manages request and response and the express client itself), Service (manages the business logic), Repository (manages the retrieve and store operations with external data sources, i.e. database, file storage, ecc). The 3-tier architecture is based on Dependency Injection and Inversion of Control, in order to make each tier independent, reusable, easily-swappable, easily-testable-mockable.
+In this case, since it is a basic application, with simple specs, the Service tier has not been implemented in order to avoid over-engineering. 
+
+----
+
 ## Contributing
 
 ### Initial setup
