@@ -10,7 +10,9 @@ describe('express app', () => {
   const envConfig: ServerConfig = {
     environment: 'dev',
     port: 3000,
-    db: ''
+    db: '',
+    levelConsoleLogs: 'debug',
+    levelFileLogs: 'error'
   }
 
   beforeAll(async () => {
