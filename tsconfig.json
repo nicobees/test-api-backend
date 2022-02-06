@@ -20,6 +20,7 @@
     "resolveJsonModule": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "strictNullChecks": true
   },
   "include": [
     "src/**/*"
