@@ -15,6 +15,9 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nicobees/getir-challenge-backend.git"

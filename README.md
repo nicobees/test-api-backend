@@ -73,3 +73,31 @@ npm run test
 ```
 npm run test:watch
 ```
+
+### Deploy to remote host
+These are the instructions to deploy the application to Heroku.
+
+1. Create an Heroku account: see [here](https://signup.heroku.com/dc)
+2. Install the Heroku CLI: see [here](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+3. Open a terminal in the project root and run this command to login into Heroku from CLI:
+
+    ```
+    heroku login
+    ```
+4. Create an Heroku app (region parameter is optional)
+
+    ```
+    heroku apps:create example-app --region eu
+    ```
+
+    This command will automatically set a new remote in the local git repository that points to the heroku remote repository, it also returns the git remote repository path and the public exposed endpoint of the application
+5. Deploy the app to the Heroku remote with this command:
+
+    ```
+    git push heroku main
+    ```
+6. Open the app with this command:
+
+    ```
+    heroku open
+    ```
