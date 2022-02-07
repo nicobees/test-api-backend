@@ -11,7 +11,7 @@ These are the main modules used in the app:
 - `dotenv` and `config` to load environment variables and manage different environments
 - `jest` and `supertest` for Unit Tests and Integration Tests
 
-It implements a (very-notoverengineered-simplified) basic version of a 3-tier architecture: for each component (usually an exposed API path), there are a Controller (manages request and response and the express client itself), Service (manages the business logic), Repository (manages the retrieve and store operations with external data sources, i.e. database, file storage, ecc). The 3-tier architecture is based on Dependency Injection and Inversion of Control, in order to make each tier independent, reusable, easily-swappable, easily-testable-mockable.
+It implements a (simplified and hopefully not over engineered) basic version of a 3-tier architecture: for each component (usually an exposed API path), there are a Controller (manages request and response and the express client itself), Service (manages the business logic), Repository (manages the retrieve and store operations with external data sources, i.e. database, file storage, ecc). The 3-tier architecture is based on Dependency Injection and Inversion of Control, in order to make each tier independent, reusable, easily-swappable, easily-testable-mockable.
 In this case, since it is a basic application, with simple specs, the Service tier has not been implemented in order to avoid over-engineering. 
 
 ----

@@ -11,7 +11,7 @@ export class DataRepository<LoggerType extends WinstonLoggerInterface> implement
 
   }
 
-  public getDataByDateAndCount = async (minDate: DataInterface['createdAt'], maxDate: DataInterface['createdAt'], minCount: number, maxCount: number): Promise<DataBaseDocument[]> => {
+  public getDataByDateAndCount = async (startDate: DataInterface['createdAt'], endDate: DataInterface['createdAt'], minCount: number, maxCount: number): Promise<DataBaseDocument[]> => {
     try {
       const aggregateFunction: PipelineStage[] = [
         {
@@ -26,8 +26,8 @@ export class DataRepository<LoggerType extends WinstonLoggerInterface> implement
         }, {
           $match: {
             createdAt: {
-              $gte: minDate,
-              $lt: maxDate
+              $gte: startDate,
+              $lt: endDate
             }
           }
         },

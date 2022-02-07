@@ -2,6 +2,47 @@ This CHANGELOG file contains the main features and changes applied to the applic
 
 ---
 
+### v1.0.0
+
+Achievements:
+
+- unit tests on high value and most important components
+- integration tests for the main request edge cases: tested request body validation, with error and success responses
+
+Still TODO:
+
+- Unit Tests, following this priority order and considering the time still available to complete the test:
+    - edge cases in high value features/components
+    - things that are easy to break
+    - most important components
+
+To Improve in future versions:
+
+- improve log management: add also http request/response logs
+- improve file structure: 3-tier architecture with components as main APIs
+- manage localisation and timezones (to carry edge cases in request where date appear)
+- manage auto validation of environment variables (to be checked at server startup, check can be run also during deploy pipeline)
+- create deploy pipeline (with environment variable check, code lint, unit tests and integration tests, typescript build and deploy to remote host)
+
+---
+
+### v0.3.0
+
+Achievements:
+
+- deploy application on Heroku and documentation
+
+Still TODO:
+
+- Unit Tests, following this priority order and considering the time still available to complete the test:
+    - high value features/components
+    - edge cases in high value features/components
+    - things that are easy to break
+    - most important components
+- Integration Test: for the unique exposed POST API
+
+---
+
 ### v0.2.0
 
 Achievements:
@@ -23,14 +64,6 @@ Still TODO:
     - things that are easy to break
     - most important components
 - Integration Test: for the unique exposed POST API
-
-To Improve in future versions:
-
-- improve log management: add also http request/response logs
-- improve file structure: 3-tier architecture with components as main APIs
-- manage localisation and timezones (to carry edge cases in request where date appear)
-- manage auto validation of environment variables (to be checked at server startup, check can be run also during deploy pipeline)
-- create deploy pipeline (with environment variable check, code lint, unit tests and integration tests, typescript build and deploy to remote host)
 
 ---
 
